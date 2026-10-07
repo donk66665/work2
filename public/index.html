@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>新浪财经历史分红数据管道</title>
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+  <header class="hero">
+    <div class="shell hero-inner">
+      <div>
+        <p class="eyebrow">数据实战作业</p>
+        <h1>新浪财经历史分红数据获取与预处理</h1>
+        <p class="lead">以贵州茅台（600519）为例，把新浪财经分红表转换为可校验、可检索、可在浏览器中直接查阅的结构化数据。</p>
+      </div>
+      <dl class="metrics" aria-label="数据概览">
+        <div><dt>记录数</dt><dd id="metric-count">--</dd></div>
+        <div><dt>时间跨度</dt><dd id="metric-range">--</dd></div>
+        <div><dt>现金分红记录</dt><dd id="metric-cash">--</dd></div>
+        <div><dt>实施率</dt><dd id="metric-progress">--</dd></div>
+      </dl>
+    </div>
+  </header>
+
+  <main>
+    <section class="band" aria-labelledby="pipeline-title">
+      <div class="shell">
+        <div class="section-head">
+          <h2 id="pipeline-title">实现过程</h2>
+          <p>从原始页面到浏览器展示，每一步都有可复现的输入、输出和校验点。</p>
+        </div>
+        <ol class="pipeline">
+          <li>
+            <span class="step-no">01</span>
+            <h3>需求确认</h3>
+            <p>确认目标是获取历史分红数据、完成清洗与字段派生、用网页呈现过程和结果，并用浏览器测试核心信息是否可见。</p>
+          </li>
+          <li>
+            <span class="step-no">02</span>
+            <h3>数据获取</h3>
+            <p>请求新浪财经 <code>vISSUE_ShareBonus</code> 页面，识别 <code>#sharebonus_1</code> 分红表，并把原始响应归档为可复查的输入文件。</p>
+          </li>
+          <li>
+            <span class="step-no">03</span>
+            <h3>解析与清洗</h3>
+            <p>用 Cheerio 提取表格行，规范化日期和数值，派生方案摘要、事件年份与是否实施，并导出 CSV 与 JSON 数据。</p>
+          </li>
+          <li>
+            <span class="step-no">04</span>
+            <h3>校验与测试</h3>
+            <p>校验记录数、重复业务键和关键字段；再用 Playwright 检查标题、指标、图表与表格是否真实渲染。</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="band muted" aria-labelledby="chart-title">
+      <div class="shell">
+        <div class="section-head">
+          <h2 id="chart-title">现金分红趋势</h2>
+          <p>按公告年份汇总“每 10 股派息（税前）”金额，用于快速识别分红节奏变化。</p>
+        </div>
+        <div class="chart-wrap" id="chart-wrap">
+          <div id="chart" class="chart" role="img" aria-label="按年份汇总的每10股现金分红柱状图"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="band" aria-labelledby="table-title">
+      <div class="shell">
+        <div class="section-head">
+          <h2 id="table-title">清洗后的分红记录</h2>
+          <p>可按年份过滤，也可以输入公告日期、方案摘要或进度关键字检索。</p>
+        </div>
+        <div class="toolbar">
+          <label for="year-filter">年份</label>
+          <select id="year-filter"><option value="all">全部</option></select>
+          <label for="search">检索</label>
+          <input id="search" type="search" placeholder="例如 2026、10派280、实施">
+          <output id="table-count" for="year-filter search">--</output>
+        </div>
+        <div class="table-scroll" tabindex="0" aria-label="分红记录表格">
+          <table>
+            <thead>
+              <tr>
+                <th>公告日期</th><th>方案摘要</th><th>送股 / 10股</th><th>转增 / 10股</th><th>派息 / 10股</th><th>进度</th><th>除权除息日</th><th>股权登记日</th><th>红股上市日</th>
+              </tr>
+            </thead>
+            <tbody id="dividend-table"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="band muted" aria-labelledby="qa-title">
+      <div class="shell">
+        <div class="section-head">
+          <h2 id="qa-title">数据质量与交付物</h2>
+          <p>下面是本次清洗的自动化校验结果和项目内可复查的文件。</p>
+        </div>
+        <div class="qa-grid">
+          <div class="qa-panel">
+            <h3>校验报告</h3>
+            <ul id="validation-list"></ul>
+          </div>
+          <div class="qa-panel">
+            <h3>项目文件</h3>
+            <ul class="file-list">
+              <li><code>data/raw/600519.utf8.html</code><span>新浪页面原始快照</span></li>
+              <li><code>data/cleaned_dividends.csv</code><span>清洗后结构化数据</span></li>
+              <li><code>data/validation_report.json</code><span>机器可读校验结果</span></li>
+              <li><code>scripts/extract_dividends.mjs</code><span>解析与清洗脚本</span></li>
+              <li><code>scripts/test-ui.mjs</code><span>Playwright 页面测试</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="shell">
+      <p>数据来源：新浪财经历史分红页面；本页面仅用于课程作业展示，不构成投资建议。</p>
+    </div>
+  </footer>
+
+  <script src="assets/dividends.js"></script>
+  <script src="assets/app.js"></script>
+</body>
+</html>

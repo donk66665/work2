@@ -1,0 +1,16 @@
+{
+  "name": "sina-dividend-pipeline",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "extract": "node scripts/extract_dividends.mjs",
+    "serve": "node scripts/server.mjs",
+    "test": "node scripts/test-ui.mjs",
+    "screenshot": "node scripts/screenshot.mjs"
+  },
+  "dependencies": {
+    "cheerio": "^1.0.0",
+    "playwright": "^1.49.0"
+  }
+}

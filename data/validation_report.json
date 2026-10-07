@@ -1,0 +1,22 @@
+{
+  "source_url": "https://vip.stock.finance.sina.com.cn/corp/go.php/vISSUE_ShareBonus/stockid/600519.phtml",
+  "source_table": "sharebonus_1",
+  "row_count": 31,
+  "expected_minimum_rows": 20,
+  "duplicate_business_keys": 0,
+  "progress_values": [
+    "实施"
+  ],
+  "implemented_count": 31,
+  "missing_required_dates": {
+    "announce_date": 0,
+    "ex_dividend_date": 0,
+    "record_date": 0,
+    "bonus_listing_date": 29
+  },
+  "date_range": {
+    "earliest": "2002-07-18",
+    "latest": "2026-06-22"
+  },
+  "generated_at": "2026-10-07T06:44:15.942Z"
+}

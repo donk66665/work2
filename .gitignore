@@ -1,0 +1,5 @@
+node_modules/
+download/
+test-results/
+.DS_Store
+

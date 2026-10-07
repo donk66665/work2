@@ -1,0 +1,325 @@
+:root {
+  color-scheme: light;
+  --bg: #f3f6f4;
+  --surface: #ffffff;
+  --ink: #17221f;
+  --muted: #5d6b68;
+  --line: #d9e2df;
+  --teal: #0f766e;
+  --teal-dark: #134e4a;
+  --amber: #b45309;
+  --shadow: 0 10px 30px rgba(23, 34, 31, 0.06);
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: "Microsoft YaHei", "PingFang SC", "Segoe UI", system-ui, sans-serif;
+  line-height: 1.55;
+}
+
+code {
+  font-family: Consolas, "Courier New", monospace;
+  font-size: 0.92em;
+  color: var(--teal-dark);
+}
+
+.shell {
+  width: min(1180px, calc(100% - 48px));
+  margin: 0 auto;
+}
+
+.hero {
+  background: #ffffff;
+  border-bottom: 1px solid var(--line);
+  padding: 72px 0 56px;
+}
+
+.hero-inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(320px, 430px);
+  gap: 48px;
+  align-items: center;
+}
+
+.eyebrow {
+  margin: 0 0 12px;
+  color: var(--teal);
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+h1, h2, h3 {
+  font-family: "Microsoft YaHei", "PingFang SC", "Segoe UI", system-ui, sans-serif;
+  letter-spacing: 0;
+  line-height: 1.2;
+  margin: 0;
+}
+
+h1 {
+  font-size: clamp(34px, 5vw, 58px);
+  max-width: 680px;
+}
+
+.lead {
+  color: var(--muted);
+  font-size: 18px;
+  max-width: 640px;
+  margin: 20px 0 0;
+}
+
+.metrics {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin: 0;
+}
+
+.metrics > div {
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 18px;
+  min-height: 108px;
+}
+
+.metrics dt {
+  color: var(--muted);
+  font-size: 13px;
+  margin: 0;
+}
+
+.metrics dd {
+  margin: 8px 0 0;
+  font-size: clamp(22px, 2.4vw, 28px);
+  font-weight: 750;
+  color: var(--teal-dark);
+}
+
+.band { padding: 64px 0; }
+
+.band.muted {
+  background: #e8efec;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.section-head {
+  max-width: 760px;
+  margin-bottom: 32px;
+}
+
+h2 { font-size: clamp(26px, 3.3vw, 38px); }
+
+.section-head p {
+  color: var(--muted);
+  margin: 12px 0 0;
+}
+
+.pipeline {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.pipeline li {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 22px;
+  box-shadow: var(--shadow);
+}
+
+.step-no {
+  display: inline-flex;
+  width: 44px;
+  height: 44px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  background: var(--teal-dark);
+  color: #fff;
+  font-weight: 800;
+}
+
+.pipeline h3 { margin-top: 18px; font-size: 19px; }
+.pipeline p { color: var(--muted); margin: 10px 0 0; }
+
+.chart-wrap {
+  overflow-x: auto;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 24px;
+}
+
+.chart {
+  min-width: 860px;
+  height: 360px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(34px, 1fr));
+  align-items: end;
+  gap: 8px;
+  padding-bottom: 0;
+}
+
+.bar-group {
+  height: 100%;
+  display: grid;
+  grid-template-rows: 1fr 22px 28px;
+  align-items: end;
+  text-align: center;
+}
+
+.bar {
+  width: 100%;
+  min-height: 3px;
+  background: var(--teal);
+  border-radius: 4px 4px 0 0;
+}
+
+.bar-value {
+  color: var(--teal-dark);
+  font-size: 12px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.bar-year {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 18px;
+}
+
+.toolbar label {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.toolbar select,
+.toolbar input {
+  min-height: 40px;
+  border: 1px solid var(--line);
+  background: #fff;
+  border-radius: 6px;
+  padding: 0 12px;
+  color: var(--ink);
+}
+
+.toolbar input { width: min(320px, 100%); }
+.toolbar output { color: var(--muted); font-size: 14px; margin-left: auto; }
+
+.table-scroll {
+  overflow: auto;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+
+table {
+  width: 100%;
+  min-width: 900px;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  white-space: nowrap;
+}
+
+th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: #eef3f1;
+  color: var(--teal-dark);
+  font-size: 13px;
+}
+
+tbody tr:last-child td { border-bottom: 0; }
+tbody tr:hover { background: #f8faf9; }
+
+.plan {
+  font-weight: 700;
+  color: var(--teal-dark);
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  min-height: 26px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: #d9efe9;
+  color: #065f46;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.qa-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.qa-panel {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 22px;
+}
+
+.qa-panel h3 { font-size: 19px; margin-bottom: 14px; }
+.qa-panel ul { list-style: none; margin: 0; padding: 0; }
+.qa-panel li {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 12px;
+  padding: 10px 0;
+  border-top: 1px solid var(--line);
+}
+
+.qa-panel li:first-child { border-top: 0; padding-top: 0; }
+.qa-panel span { color: var(--muted); text-align: right; }
+
+.footer {
+  padding: 32px 0;
+  color: var(--muted);
+  border-top: 1px solid var(--line);
+  background: #fff;
+}
+
+@media (max-width: 900px) {
+  .hero { padding: 48px 0; }
+  .hero-inner { grid-template-columns: 1fr; gap: 28px; }
+  .pipeline { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .qa-grid { grid-template-columns: 1fr; }
+  .band { padding: 48px 0; }
+}
+
+@media (max-width: 620px) {
+  .shell { width: min(100% - 32px, 1180px); }
+  h1 { font-size: 34px; }
+  .metrics { grid-template-columns: 1fr; }
+  .pipeline { grid-template-columns: 1fr; }
+  .toolbar output { width: 100%; margin-left: 0; }
+  .chart { min-width: 680px; height: 300px; }
+}
